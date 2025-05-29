@@ -130,7 +130,7 @@ http://localhost:2426
 ### 📈 Medical Appointment Status
 
 #### ✅ Crear estado de cita médica
-- `POST /medical-appointment-statuses`
+- `POST /appointment-statuses`
 ```json
 {
   "status_name": "Completed"
@@ -138,7 +138,7 @@ http://localhost:2426
 ```
 
 #### 📥 Obtener todos los estados
-- `GET /medical-appointment-statuses`
+- `GET /appointment-statuses`
 
 ---
 
