@@ -192,6 +192,4 @@ Puedes utilizar herramientas como **Postman** o **Thunder Client** para probar e
 
 ---
 
-## 👨‍💻 Autor
 
-Proyecto desarrollado por Ariel Sivila.
