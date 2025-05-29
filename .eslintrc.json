@@ -8,7 +8,8 @@
     },
     "ignorePatterns": [
         "dist",
-        "src/**/*.js"
+        "src/**/*.js",
+        "src/generated/*"
     ]
 
 }
