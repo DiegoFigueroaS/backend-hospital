@@ -1,0 +1,122 @@
+@startuml
+hide circle
+skinparam linetype ortho
+
+entity USER_TYPE {
+  *user_type_id : INT <<PK>>
+  user_type_name : VARCHAR
+  createdAt : TIMESTAMP
+  updatedAt : TIMESTAMP
+}
+
+entity USER {
+  *user_ci : VARCHAR <<PK>>
+  user_type_id : INT <<FK>>
+  firebase_uid : VARCHAR <<UNIQUE, NOT NULL>>
+  id_horario : INT <<FK>>
+  id_especialidad : INT <<FK>>
+  name : VARCHAR
+  phone : VARCHAR
+  createdAt : TIMESTAMP
+  updatedAt : TIMESTAMP
+}
+
+entity HORARIOS {
+  *id_horario : INT <<PK>>
+  hora_entrada : TIME
+  hora_salida : TIME
+  createdAt : TIMESTAMP
+  updatedAt : TIMESTAMP
+}
+
+entity USER_HORARIO {
+  *id_user_horario : INT <<PK>>
+  id_horario : INT <<FK>>
+  user_ci : VARCHAR <<FK>>
+  hora_entrada : TIME
+  hora_salida : TIME
+  createdAt : TIMESTAMP
+  updatedAt : TIMESTAMP
+}
+
+entity ESPECIALIDADES {
+  *especialidad_id : INT <<PK>>
+  especiality_name : VARCHAR
+  createdAt : TIMESTAMP
+  updatedAt : TIMESTAMP
+}
+
+entity HOSPITAL {
+  *hospital_id : INT <<PK>>
+  hospital_name : VARCHAR
+  createdAt : TIMESTAMP
+  updatedAt : TIMESTAMP
+}
+
+entity USER_HOSPITAL {
+  *id_user_hospital : INT <<PK>>
+  hospital_id : INT <<FK>>
+  user_ci : VARCHAR <<FK>>
+  createdAt : TIMESTAMP
+  updatedAt : TIMESTAMP
+}
+
+entity CONSULTORIOS {
+  *consultorio_id : INT <<PK>>
+  hospital_id : INT <<FK>>
+  consultorio_code : VARCHAR
+  createdAt : TIMESTAMP
+  updatedAt : TIMESTAMP
+}
+
+entity USER_CONSULTORIO {
+  *id_user_consultorio : INT <<PK>>
+  user_ci : VARCHAR <<FK>>
+  consultorio_id : INT <<FK>>
+  createdAt : TIMESTAMP
+  updatedAt : TIMESTAMP
+}
+
+entity DIAGNOSTICO {
+  *id_diagnostico : INT <<PK>>
+  diagnostico_description : TEXT
+  createdAt : TIMESTAMP
+  updatedAt : TIMESTAMP
+}
+
+entity CITA_MEDICA_STATUS {
+  *cita_medica_status_id : INT <<PK>>
+  status_name : VARCHAR
+  createdAt : TIMESTAMP
+  updatedAt : TIMESTAMP
+}
+
+entity CITA_MEDICA {
+  *cita_medica_id : INT <<PK>>
+  hospital_id : INT <<FK>>
+  client_ci : VARCHAR <<FK>>
+  doctor_ci : VARCHAR <<FK>>
+  id_diagnostico : INT <<FK>>
+  cita_medica_status_id : INT <<FK>>
+  cita_fecha : DATE
+  cita_hora : TIME
+  createdAt : TIMESTAMP
+  updatedAt : TIMESTAMP
+}
+
+' Relaciones
+USER_TYPE ||--o{ USER : "has"
+HORARIOS ||--o{ USER : "used by"
+HORARIOS ||--o{ USER_HORARIO : "mapped in"
+USER ||--o{ USER_HORARIO : "has"
+ESPECIALIDADES ||--o{ USER : "has"
+HOSPITAL ||--o{ USER_HOSPITAL : "assigned to"
+USER ||--o{ USER_HOSPITAL : "assigned"
+HOSPITAL ||--o{ CONSULTORIOS : "contains"
+USER ||--o{ USER_CONSULTORIO : "assigned"
+CONSULTORIOS ||--o{ USER_CONSULTORIO : "used"
+USER ||--o{ CITA_MEDICA : "as doctor or patient"
+HOSPITAL ||--o{ CITA_MEDICA : "used in"
+DIAGNOSTICO ||--o{ CITA_MEDICA : "result of"
+CITA_MEDICA_STATUS ||--o{ CITA_MEDICA : "status of"
+@enduml

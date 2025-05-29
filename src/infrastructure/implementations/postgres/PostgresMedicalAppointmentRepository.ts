@@ -7,11 +7,11 @@ const prisma = new PrismaClient()
 
 export class PostgresMedicalAppointmentRepository implements MedicalAppointmentRepository {
   async getAll (): Promise<MedicalAppointment[]> {
-    return prisma.medicalAppointment.findMany()
+    return await prisma.medicalAppointment.findMany()
   }
 
   async save (appointment: MedicalAppointment): Promise<MedicalAppointment> {
-    return prisma.medicalAppointment.create({
+    return await prisma.medicalAppointment.create({
       data: {
         id: appointment.id,
         hospital_id: appointment.hospital_id,
@@ -26,13 +26,13 @@ export class PostgresMedicalAppointmentRepository implements MedicalAppointmentR
   }
 
   async getById (id: string): Promise<MedicalAppointment | null> {
-    return prisma.medicalAppointment.findUnique({
+    return await prisma.medicalAppointment.findUnique({
       where: { id }
     })
   }
 
   async update (appointment: MedicalAppointment): Promise<MedicalAppointment> {
-    return prisma.medicalAppointment.update({
+    return await prisma.medicalAppointment.update({
       where: { id: appointment.id },
       data: {
         hospital_id: appointment.hospital_id,
