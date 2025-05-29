@@ -42,7 +42,7 @@ import { GetAllUsersUseCase } from '../../../app/usecases/user/GetAllUsersUseCas
 
   const user: User = {
     id: uuid(),
-    firebase_uid: 'firebase-uid-001',
+    firebase_uid: 'firebase-uid-003',
     user_type_id: userType.id,
     specialty_id: specialty.id,
     schedule_id: schedule.id,

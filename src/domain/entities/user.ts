@@ -1,3 +1,6 @@
+import { type Clinic } from './clinic'
+import { type Hospital } from './hospital'
+
 export interface User {
   id: string
   firebase_uid: string
@@ -8,4 +11,7 @@ export interface User {
   phone: string
   createdAt?: Date
   updatedAt?: Date
+
+  userClinics?: Clinic[]
+  userHospitals?: Hospital[]
 }

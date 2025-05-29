@@ -7,7 +7,7 @@ const prisma = new PrismaClient()
 
 export class PostgresUserHospitalRepository implements UserHospitalRepository {
   async getAll (): Promise<UserHospital[]> {
-    return prisma.userHospital.findMany()
+    return await prisma.userHospital.findMany()
   }
 
   async save (userHospital: UserHospital): Promise<UserHospital> {

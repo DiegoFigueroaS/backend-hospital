@@ -20,6 +20,9 @@ export class PostgresClinicRepository implements ClinicRepository {
         id: clinic.id,
         clinic_code: clinic.clinic_code,
         hospital_id: clinic.hospital_id
+      },
+      include: {
+        hospital: true
       }
     })
   }
